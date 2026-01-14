@@ -563,7 +563,7 @@ class GeminiAnalyzer:
                         {"role": "user", "content": prompt}
                     ],
                     temperature=generation_config.get('temperature', 0.7),
-                    max_tokens=generation_config.get('max_output_tokens', 8192),
+                    max_completion_tokens=generation_config.get('max_output_tokens', 8192),
                 )
                 
                 if response and response.choices and response.choices[0].message.content:
