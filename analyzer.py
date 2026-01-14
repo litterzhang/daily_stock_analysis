@@ -562,7 +562,7 @@ class GeminiAnalyzer:
                         {"role": "system", "content": self.SYSTEM_PROMPT},
                         {"role": "user", "content": prompt}
                     ],
-                    temperature=generation_config.get('temperature', 0.7),
+                    temperature=generation_config.get('temperature', 1.0),
                     max_completion_tokens=generation_config.get('max_output_tokens', 8192),
                 )
                 
@@ -755,7 +755,7 @@ class GeminiAnalyzer:
             
             # 设置生成配置
             generation_config = {
-                "temperature": 0.7,
+                "temperature": 1.0,
                 "max_output_tokens": 8192,
             }
             
