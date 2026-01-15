@@ -1,9 +1,9 @@
 name: 每日股票分析
 
 on:
-  # 定时触发 - 每天北京时间 18:00 (UTC 10:00)
+  # 定时触发 - 每天北京时间 09:30 (UTC 01:00)
   schedule:
-    - cron: '0 10 * * 1-5'  # 周一到周五，UTC 10:00 = 北京时间 18:00
+    - cron: '30 1 * * 1-5'  # 周一到周五，UTC 01:30 = 北京时间 09:30
   
   # 手动触发
   workflow_dispatch:
@@ -90,14 +90,14 @@ jobs:
           MAX_CONCURRENT: 3
         run: |
           # 判断运行模式
-          MODE="${{ github.event.inputs.mode || 'full' }}"
+          MODE="${{ github.event.inputs.mode || 'stocks-only' }}"
           
           echo "=========================================="
           echo "运行模式: $MODE"
           echo "自选股: $STOCK_LIST"
           echo "时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
           echo "=========================================="
-          
+
           if [ "$MODE" = "market-only" ]; then
             python main.py --market-review
           elif [ "$MODE" = "stocks-only" ]; then
